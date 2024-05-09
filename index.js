@@ -32,7 +32,7 @@ async function run() {
     // await client.connect();
 
     const database = client.db('touristDB');
-    const spotCollection = database.collection("spot");
+    const spotCollection = database.collection("spots");
 
 
     // to send spots backend 
@@ -40,6 +40,13 @@ async function run() {
       const newSpot = req.body;
       console.log(newSpot); 
       const result = await  spotCollection.insertOne(newSpot);
+      res.send(result);
+    })
+
+    // to see the spot cards 
+    app.get('/spots', async(req, res)=>{
+      const cursor = spotCollection.find();
+      const result = await cursor.toArray();
       res.send(result);
     })
 
