@@ -31,8 +31,19 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
 
+    // country section 
+   
+
     const database = client.db('touristDB');
     const spotCollection = database.collection("spots");
+    const countryCollection = database.collection("countries");
+
+    // to see the country cards 
+    app.get('/countries', async (req, res) => {
+      const cursor = countryCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
 
 
     // to send spots backend 
