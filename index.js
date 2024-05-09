@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 
 // middleware 
 app.use(cors({
-  origin: ['http://localhost:5173','http://b9a10-tourist-haven-server.vercel.app'],
+  origin: ['https://b9a10-tourist-haven.web.app'],
   credentials: true
 }));
 app.use(express.json())
