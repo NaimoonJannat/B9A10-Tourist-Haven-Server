@@ -34,6 +34,16 @@ async function run() {
     const database = client.db('touristDB');
     const spotCollection = database.collection("spot");
 
+
+    // to send spots backend 
+    app.post('/spots', async(req, res)=>{
+      const newSpot = req.body;
+      console.log(newSpot); 
+      const result = await  spotCollection.insertOne(newSpot);
+      res.send(result);
+    })
+
+   
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
