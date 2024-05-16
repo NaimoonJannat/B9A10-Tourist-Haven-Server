@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 
 // middleware 
 app.use(cors({
-  origin: ['https://b9a10-tourist-haven.web.app'],
+  origin: ['https://b9a10-tourist-haven.web.app','http://localhost:5173'],
   credentials: true
 }));
 app.use(express.json())
@@ -36,14 +36,14 @@ async function run() {
 
     const database = client.db('touristDB');
     const spotCollection = database.collection("spots");
-    // const countryCollection = database.collection("countries");
+    const countryCollection = database.collection("countries");
 
-    // // to see the country cards 
-    // app.get('/countries', async (req, res) => {
-    //   const cursor = countryCollection.find();
-    //   const result = await cursor.toArray();
-    //   res.send(result);
-    // })
+    // to see the country cards 
+    app.get('/countries', async (req, res) => {
+      const cursor = countryCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
 
 
     // to send spots backend 
